@@ -1,0 +1,95 @@
+/**
+@mainpage Dokumentacja zadania wielomiany
+
+### Treść zadania
+
+Jako pierwszą część zadania należy zaimplementować bibliotekę podstawowych operacji na wielomianach rzadkich wielu zmiennych.
+
+Zmienne wielomianu oznaczamy
+@f$x_0
+, x_1, x_2@f$ itd. Definicja wielomianu jest rekurencyjna. Wielomian jest sumą jednomianów postaci @f$px^n@f$, gdzie @f$n@f$ jest wykładnikiem tego jednomianu będącym nieujemną liczbą całkowitą,
+ a @f$p@f$ jest współczynnikiem, który jest wielomianem. Współczynnik w jednomianie zmiennej @f$x_i@f$ jest sumą jednomianów zmiennej @f$x_{i+1}@f$.
+  Rekurencja kończy się, gdy współczynnik jest liczbą (czyli wielomianem stałym), a nie sumą kolejnych jednomianów.
+   Wykładniki jednomianów w każdej z rozważanych sum są parami różne. Wielomiany są rzadkie, co oznacza, że stopień wielomianu może być znacznie większy niż liczba składowych jednomianów.
+
+Jako drugą część zadania należy zaimplementować kalkulator działający na wielomianach i stosujący odwrotną notację polską.
+
+Uwaga: aktualna treść zadania znajduje się w [Moodle](https://moodle.mimuw.edu.pl).
+
+### Opis programu
+
+Kalkulator korzysta z biblioteki operacji na wielomianach operacji na wielomianach
+rzadkich wielu zmiennych.
+Zaimplementowane operacje:
+- dodawanie dwóch wielomianów,
+- mnożenie dwóch wielomianów,
+- odejmowanie dwóch wielomianów,
+- negacja współczynników wielomianu,
+- wyznaczanie wartości wielomianu w punkcie,
+- wyznaczanie stopnia wielomianu nad zadaną zmienną,
+- wyznaczanie ogólnego stopnia wielomianu,
+- sprawdzanie równości dwóch wielomianów.
+
+Każdy wielomian utworzony za pomocą dostępnych funkcji jest w możliwie najprostszej postaci, czyli:
+- Wielomian stały ma pustą tablicę jednomianów (.arr == NULL).
+- Tablica jednomianów wielomianu niestałego jest posortowana ściśle rosnąco względem wartości wykładnika oraz
+ nie występują w niej jednomiany o zerowym współczynniku.
+
+Powyższe założenie zapewnia jednoznaczną reprezentację wielomianu, co ułatwia na przykład sprawdzanie czy dwa wielomiany
+są równe.
+
+Ponadto, w rozwiązaniu przyjęto, że wielomian nad zmiennymi o indeksach z zakresu @f$0...n@f$, jest wielomianem stale równym @f$1@f$ nad zmiennymi
+o indeksach @f$ > n@f$.
+
+Program kalkulatora czyta dane wierszami ze standardowego wejścia. Wiersz zawiera wielomian lub polecenie do wykonania.
+Wielomian reprezentujemy jako stałą, jednomian lub sumę jednomianów.
+Stała jest liczbą całkowitą. Jednomian reprezentujemy jako parę (coeff,exp), gdzie współczynnik coeff jest wielomianem,
+a wykładnik exp jest liczbą nieujemną. Do wyrażenia sumy używamy znaku +. Jeśli wiersz zawiera wielomian, to program wstawia go na stos.
+Przykłady poprawnych wielomianów:
+
+0
+
+1
+
+-2
+
+(0,0)
+
+(1,0)
+
+(-2,0)
+
+(1,1)
+
+(1,0)+(1,2)
+
+(1,2)+(1,0)
+
+(1,2)+(-1,2)
+
+(1,2)+(-2,2)
+
+((1,2),15)+(-7,8)
+
+(3,1)+(((4,4),100),2)
+
+Kalkulator wykonuje następujące polecenia:
+
+    ZERO – wstawia na wierzchołek stosu wielomian tożsamościowo równy zeru;
+    IS_COEFF – sprawdza, czy wielomian na wierzchołku stosu jest współczynnikiem – wypisuje na standardowe wyjście 0 lub 1;
+    IS_ZERO – sprawdza, czy wielomian na wierzchołku stosu jest tożsamościowo równy zeru – wypisuje na standardowe wyjście 0 lub 1;
+    CLONE – wstawia na stos kopię wielomianu z wierzchołka;
+    ADD – dodaje dwa wielomiany z wierzchu stosu, usuwa je i wstawia na wierzchołek stosu ich sumę;
+    MUL – mnoży dwa wielomiany z wierzchu stosu, usuwa je i wstawia na wierzchołek stosu ich iloczyn;
+    NEG – neguje wielomian na wierzchołku stosu;
+    SUB – odejmuje od wielomianu z wierzchołka wielomian pod wierzchołkiem, usuwa je i wstawia na wierzchołek stosu różnicę;
+    IS_EQ – sprawdza, czy dwa wielomiany na wierzchu stosu są równe – wypisuje na standardowe wyjście 0 lub 1;
+    DEG – wypisuje na standardowe wyjście stopień wielomianu (−1 dla wielomianu tożsamościowo równego zeru);
+    DEG_BY idx – wypisuje na standardowe wyjście stopień wielomianu ze względu na zmienną o numerze idx (−1 dla wielomianu tożsamościowo równego zeru);
+    AT x – wylicza wartość wielomianu w punkcie x, usuwa wielomian z wierzchołka i wstawia na stos wynik operacji;
+    PRINT – wypisuje na standardowe wyjście wielomian z wierzchołka stosu;
+    POP – usuwa wielomian z wierzchołka stosu.
+    COMPOSE k - składa wielomian z wierzchołka stosu z k wielomianami pod nim.
+
+Wypisywany poleceniem PRINT wielomian powinien mieć jak najprostszą postać. Wykładniki wypisywanych jednomianów nie powinny się powtarzać. Jednomiany powinny być posortowane rosnąco według wykładników.
+*/
